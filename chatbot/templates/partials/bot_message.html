@@ -1,0 +1,19 @@
+<div
+  hx-ext="sse" 
+  sse-connect="/generate-story/stream?query={{ query }}&top_k={{ top_k }}" 
+  sse-close="done">
+    <!-- Movie info will appear here -->
+    <div id="movie-info" style="display:none;">
+        <h2 id="movie-title"></h2>
+        <img id="movie-poster" src="" alt="Movie poster" style="max-width: 300px;">
+        <p id="movie-plot"/></p>
+    </div>
+    
+    <!-- Story content will stream here -->
+    <p  
+        sse-swap="content"
+        hx-swap="beforeend"
+    >
+      ...
+    </p>
+</div>
