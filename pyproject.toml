@@ -10,3 +10,8 @@ dependencies = [
     "scylla-driver>=3.29.7",
     "sentence-transformers>=5.2.0",
 ]
+
+[dependency-groups]
+dev = [
+    "detect-secrets>=1.5.0",
+]
