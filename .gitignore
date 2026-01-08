@@ -38,6 +38,10 @@ pip-delete-this-directory.txt
 
 # Unit test / coverage reports
 htmlcov/
+ 
+# Secret scanning baseline (should not be committed)
+.secrets.baseline
+
 .tox/
 .nox/
 .coverage
