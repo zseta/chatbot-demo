@@ -23,6 +23,6 @@ Copy and edit `example.env`. Set your ScyllaDB and GROQ API credentials.
 
 ## Run the server
 ```bash
-uvicorn chatbot.app:app --reload
+uv run uvicorn chatbot.app:app --reload
 ```
 The app will be available at [http://localhost:8000](http://localhost:8000)
