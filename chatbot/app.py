@@ -62,10 +62,7 @@ async def post_recommendations(request: RecommendationRequest):
         )
     
     try:
-        logger.info(f"Getting recommendations for query: '{request.query}', top_k: {request.top_k}")
         movies = movie_rag.similar_movies(request.query, request.top_k)
-        
-        logger.info(f"Found {len(movies)} recommendations")
         
         return RecommendationResponse(
             movies=movies,
@@ -82,7 +79,7 @@ async def post_recommendations(request: RecommendationRequest):
 
 
 @app.get("/start-sse", response_class=HTMLResponse)
-async def generate_story(request: Request, query, top_k):
+async def start_bot_message(request: Request, query, top_k):
     context = {"request": request,
                "query_string": request.url.query,
                "query": query,
@@ -122,7 +119,7 @@ async def generate_story_stream(request: Request, query: str, top_k: int):
         rag_movie_plot = movie.plot
         context_prompt = llm_context_prompt.format(plot=rag_movie_plot)
         
-        async def stream_generator():
+        def stream_generator():
             # Send movie data first
             movie_data = {
                 "title": movie.title,
