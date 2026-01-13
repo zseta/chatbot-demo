@@ -1,4 +1,6 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 SCYLLADB_CONFIG = {
     "host": os.getenv("SCYLLADB_HOST", ""),
