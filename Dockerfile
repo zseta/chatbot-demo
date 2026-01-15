@@ -11,8 +11,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy requirements first for better caching
 COPY requirements.txt .
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install PyTorch CPU-only first (avoids NVIDIA/CUDA packages)
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+
+# Install remaining Python dependencies (excluding torch and nvidia packages)
+RUN grep -v -E '^(torch|nvidia|triton)' requirements.txt > requirements-filtered.txt && \
+    pip install --no-cache-dir -r requirements-filtered.txt
 
 # Copy application code
 COPY chatbot/ ./chatbot/
