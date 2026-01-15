@@ -25,4 +25,14 @@ Copy and edit `example.env`. Set your ScyllaDB and GROQ API credentials.
 ```bash
 uv run uvicorn chatbot.app:app --reload
 ```
+## Run with Docker
+```
+docker build -t demo/rag-chatbot .
+docker run -p 8000:8000 --env-file .env --name rag-chatbot demo/rag-chatbot
+```
+
+# Run with environment variables
+```
+
+```
 The app will be available at [http://localhost:8000](http://localhost:8000)
