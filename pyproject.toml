@@ -13,5 +13,5 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "detect-secrets>=1.5.0",
+    "awsebcli>=3.25.3",
 ]
